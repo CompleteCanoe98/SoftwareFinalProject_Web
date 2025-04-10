@@ -1,0 +1,9 @@
+<h1>Assignments</h1>
+<ul>
+    {% for assignment in assignments %}
+        <li>
+            <a href="{{ assignment.id }}/">{{ assignment.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
+<a href="create/">Create New Assignment</a>
