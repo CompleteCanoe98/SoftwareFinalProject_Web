@@ -1,7 +1,7 @@
 <h1>Delete Assignment</h1>
 <p>Are you sure you want to delete "{{ assignment.name }}"?</p>
-<form method="post">
+<form method="post" action="{{ assignment.id }}/delete/" style="display:inline;">
     {% csrf_token %}
-    <button type="submit">Yes, delete</button>
+    <button type="submit">Delete</button>
 </form>
 <a href="/">Cancel</a>

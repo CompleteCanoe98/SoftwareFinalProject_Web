@@ -5,7 +5,11 @@ from .forms import AssignmentForm
 
 @login_required
 def assignment_list(request):
-    assignments = Assignment.objects.all()
+    query = request.GET.get('q', '')
+    if query:
+        assignments = Assignment.objects.filter(name__icontains=query)
+    else:
+        assignments = Assignment.objects.all()
     return render(request, 'tasks/assignment_list.html', {'assignments': assignments})
 
 @login_required
@@ -31,15 +35,17 @@ def update_assignment(request, pk):
         form = AssignmentForm(request.POST, instance=assignment)
         if form.is_valid():
             form.save()
-            return redirect('assignment_list')
+            return redirect('assignment_list')  # Redirect to the list after saving
     else:
         form = AssignmentForm(instance=assignment)
     return render(request, 'tasks/assignment_form.html', {'form': form})
-
+    
 @permission_required('tasks.delete_assignment')
 def delete_assignment(request, pk):
     assignment = get_object_or_404(Assignment, pk=pk)
     if request.method == 'POST':
+        # Perform the deletion only for POST requests
         assignment.delete()
-        return redirect('assignment_list')
+        return redirect('assignment_list')  # Redirect to the list after deletion
+    # Render the confirmation page for GET requests
     return render(request, 'tasks/assignment_confirm_delete.html', {'assignment': assignment})

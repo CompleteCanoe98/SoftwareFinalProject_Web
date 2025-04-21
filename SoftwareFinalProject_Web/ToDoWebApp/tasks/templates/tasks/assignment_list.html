@@ -2,8 +2,14 @@
 <ul>
     {% for assignment in assignments %}
         <li>
-            <a href="{{ assignment.id }}/">{{ assignment.name }}</a>
+            <a href="{{ assignment.id }}/">{{ assignment.name }}</a> <!-- Link to view details -->
+            <a href="{{ assignment.id }}/edit/">Edit</a> <!-- Link to edit -->
+            <form method="post" action="{{ assignment.id }}/delete/" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Delete</button> <!-- Button to delete -->
+            </form>
         </li>
     {% endfor %}
 </ul>
-<a href="create/">Create New Assignment</a>
+<a href="create/">Create New Assignment</a> <!-- Link to create a new assignment -->
+
