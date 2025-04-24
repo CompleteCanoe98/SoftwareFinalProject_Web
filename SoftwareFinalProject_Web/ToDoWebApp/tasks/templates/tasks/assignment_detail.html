@@ -1,18 +1,96 @@
-<h1>{{ assignment.name }}</h1>
-<p><strong>Due Date:</strong> {{ assignment.due_date }}</p>
-<p><strong>Description:</strong> {{ assignment.description }}</p>
-<p><strong>Status:</strong> {{ assignment.status }}</p>
-<p><strong>Assigned To:</strong> {{ assignment.assigned_to }}</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ assignment.name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .details-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .details-container p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .details-container p strong {
+            color: #555;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .button-group a,
+        .button-group button {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            font-size: 14px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ assignment.name }}</h1>
+    <div class="details-container">
+        <p><strong>Due Date:</strong> {{ assignment.due_date }}</p>
+        <p><strong>Description:</strong> {{ assignment.description }}</p>
+        <p><strong>Status:</strong> {{ assignment.status }}</p>
+        <p><strong>Assigned To:</strong> {{ assignment.assigned_to }}</p>
 
-<!-- Edit Button -->
-<a href="{% url 'update_assignment' pk=assignment.id %}" class="btn btn-primary">Edit</a>
+        <div class="button-group">
+            <!-- Edit Button -->
+            <a href="{% url 'update_assignment' pk=assignment.id %}" class="btn-primary">Edit</a>
 
-<!-- Delete Button -->
-<form method="post" action="{% url 'delete_assignment' pk=assignment.id %}" style="display:inline;">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Delete</button>
-</form>
+            <!-- Delete Button -->
+            <form method="post" action="{% url 'delete_assignment' pk=assignment.id %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
 
-<!-- Add spacing before the Back to List link -->
-<br><br>
-<a href="{% url 'assignment_list' %}" class="btn btn-secondary">Back to List</a>
+    <!-- Back to List Button -->
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{% url 'assignment_list' %}" class="btn-secondary">Back to List</a>
+    </div>
+</body>
+</html>

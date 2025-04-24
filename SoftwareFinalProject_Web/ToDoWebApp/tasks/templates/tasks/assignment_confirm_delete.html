@@ -1,7 +1,74 @@
-<h1>Delete Assignment</h1>
-<p>Are you sure you want to delete "{{ assignment.name }}"?</p>
-<form method="post" action="{{ assignment.id }}/delete/" style="display:inline;">
-    {% csrf_token %}
-    <button type="submit">Delete</button>
-</form>
-<a href="/">Cancel</a>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Assignment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            color: #dc3545;
+        }
+        .confirmation-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+        .button-group button,
+        .button-group a {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            font-size: 14px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <h1>Delete Assignment</h1>
+    <div class="confirmation-container">
+        <p>Are you sure you want to delete "<strong>{{ assignment.name }}</strong>"?</p>
+        <div class="button-group">
+            <form method="post" action="{{ assignment.id }}/delete/" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn-danger">Delete</button>
+            </form>
+            <a href="/" class="btn-secondary">Cancel</a>
+        </div>
+    </div>
+</body>
+</html>

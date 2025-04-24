@@ -1,23 +1,99 @@
-<h1>Assignments</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assignments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #fff;
+            margin: 10px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #c82333;
+        }
+        .logout-form {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .create-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #28a745;
+        }
+        .create-link:hover {
+            color: #218838;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px; /* Add space between buttons */
+        }
+    </style>
+</head>
+<body>
+    <h1>Assignments</h1>
 
-<!-- Logout Form -->
-{% if user.is_authenticated %}
-    <form method="post" action="{% url 'logout' %}" style="display:inline;">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-link">Logout</button>
-    </form>
-{% endif %}
-
-<ul>
-    {% for assignment in assignments %}
-        <li>
-            <a href="{{ assignment.id }}/">{{ assignment.name }}</a>
-            <a href="{{ assignment.id }}/edit/">Edit</a>
-            <form method="post" action="{{ assignment.id }}/delete/" style="display:inline;">
+    <!-- Logout Form -->
+    {% if user.is_authenticated %}
+        <div class="logout-form">
+            <form method="post" action="{% url 'logout' %}" style="display:inline;">
                 {% csrf_token %}
-                <button type="submit">Delete</button>
+                <button type="submit">Logout</button>
             </form>
-        </li>
-    {% endfor %}
-</ul>
-<a href="create/">Create New Assignment</a>
+        </div>
+    {% endif %}
+
+    <ul>
+        {% for assignment in assignments %}
+            <li>
+                <span>
+                    <a href="{{ assignment.id }}/">{{ assignment.name }}</a>
+                </span>
+                <span class="button-group">
+                    <a href="{{ assignment.id }}/edit/">Edit</a>
+                    <form method="post" action="{{ assignment.id }}/delete/" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit">Delete</button>
+                    </form>
+                </span>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="create/" class="create-link">Create New Assignment</a>
+</body>
+</html>

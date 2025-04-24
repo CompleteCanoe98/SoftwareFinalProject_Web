@@ -1,10 +1,31 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>TaskViewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            max-width: 300px;
+            margin: auto;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-    <h1>Login</h1>
+    <h1>TaskViewer</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
