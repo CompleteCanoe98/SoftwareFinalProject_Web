@@ -1,4 +1,3 @@
-# filepath: c:\Users\edwes\SoftwareFinalProject_Web\ToDoWebApp\tasks\models.py
 from django.db import models
 from django.contrib.auth.models import User
 
