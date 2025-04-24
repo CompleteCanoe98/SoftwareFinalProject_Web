@@ -1,11 +1,20 @@
+<!-- filepath: c:\Users\edwes\SoftwareFinalProject_Web\ToDoWebApp\tasks\templates\tasks\assignment_detail.html -->
 <h1>{{ assignment.name }}</h1>
 <p><strong>Due Date:</strong> {{ assignment.due_date }}</p>
 <p><strong>Description:</strong> {{ assignment.description }}</p>
 <p><strong>Status:</strong> {{ assignment.status }}</p>
-<p><strong>Assigned To:</strong> {{ assignment.assigned_to.all|join:", " }}</p>
-<a href="{{ assignment.id }}/edit/">Edit</a>
-<form method="post" action="{{ assignment.id }}/delete/">
+<p><strong>Assigned To:</strong> {{ assignment.assigned_to }}</p>
+
+<!-- Edit Button -->
+<a href="{% url 'update_assignment' pk=assignment.id %}" class="btn btn-primary">Edit</a>
+
+<!-- Delete Button -->
+<form method="post" action="{% url 'delete_assignment' pk=assignment.id %}" style="display:inline;">
     {% csrf_token %}
-    <button type="submit">Delete</button>
+    <button type="submit" class="btn btn-danger">Delete</button>
 </form>
-<a href="/">Back to List</a>
+
+<!-- Add spacing before the Back to List link -->
+<br><br>
+<a href="{% url 'assignment_list' %}" class="btn btn-secondary">Back to List</a>
+
