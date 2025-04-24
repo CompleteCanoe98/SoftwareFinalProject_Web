@@ -1,15 +1,23 @@
 <h1>Assignments</h1>
+
+<!-- Logout Form -->
+{% if user.is_authenticated %}
+    <form method="post" action="{% url 'logout' %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-link">Logout</button>
+    </form>
+{% endif %}
+
 <ul>
     {% for assignment in assignments %}
         <li>
-            <a href="{{ assignment.id }}/">{{ assignment.name }}</a> <!-- Link to view details -->
-            <a href="{{ assignment.id }}/edit/">Edit</a> <!-- Link to edit -->
+            <a href="{{ assignment.id }}/">{{ assignment.name }}</a>
+            <a href="{{ assignment.id }}/edit/">Edit</a>
             <form method="post" action="{{ assignment.id }}/delete/" style="display:inline;">
                 {% csrf_token %}
-                <button type="submit">Delete</button> <!-- Button to delete -->
+                <button type="submit">Delete</button>
             </form>
         </li>
     {% endfor %}
 </ul>
-<a href="create/">Create New Assignment</a> <!-- Link to create a new assignment -->
-
+<a href="create/">Create New Assignment</a>

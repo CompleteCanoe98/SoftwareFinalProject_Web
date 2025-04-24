@@ -1,2 +1,14 @@
-<h1>You have been logged out</h1>
-<a href="/">Return to Home</a>
+<!-- filepath: c:\Users\edwes\SoftwareFinalProject_Web\ToDoWebApp\tasks\templates\registration\logged_out.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logged Out</title>
+</head>
+<body>
+    <h1>You have been logged out</h1>
+    <p>Thank you for using the application. You can log in again below:</p>
+    <a href="{% url 'login' %}">Login Again</a> <!-- Link to the login page -->
+    <br>
+    <a href="/">Return to Home</a> <!-- Link to the home page -->
+</body>
+</html>

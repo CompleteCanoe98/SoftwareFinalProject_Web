@@ -40,12 +40,16 @@ INSTALLED_APPS = [
     "tasks",  
 ]
 
+LOGIN_URL = '/accounts/login/'  # Redirect to this URL if not logged in
+LOGIN_REDIRECT_URL = '/tasks/'  # Redirect to this URL after login
+LOGOUT_REDIRECT_URL = '/accounts/login/'  # Redirect to login page after logout
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",  # Required for login
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
-    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",  # Required for login
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]

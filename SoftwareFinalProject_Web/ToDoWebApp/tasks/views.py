@@ -3,6 +3,11 @@ from .models import Assignment
 from django.contrib.auth.decorators import login_required, permission_required
 from .forms import AssignmentForm
 
+# Add the root_redirect view here
+@login_required
+def root_redirect(request):
+    return redirect('assignment_list')  # Redirect to the assignment list page
+
 @login_required
 def assignment_list(request):
     query = request.GET.get('q', '')

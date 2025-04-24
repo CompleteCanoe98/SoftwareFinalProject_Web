@@ -17,11 +17,11 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from django.shortcuts import redirect
+from tasks.views import root_redirect  # Import the new view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('tasks/', include('tasks.urls')),
-    path('', lambda request: redirect('tasks/')),  
-    path('accounts/', include('django.contrib.auth.urls')),  
+    path('', root_redirect, name='root_redirect'),  # Use the new view for the root URL
+    path('accounts/', include('django.contrib.auth.urls')),  # Authentication URLs
 ]
